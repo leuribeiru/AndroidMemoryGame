@@ -4,7 +4,9 @@
  
  O jogador deve acertar a sequência que foi gerada
  
- Se o jogador clicar no botão correto, correspondente a sequência gerada, o botão desaparece e a barra de progresso aumenta, se o jogador clicar no botão errado todos os botões reaparecem e a barra de progresso é reiniciada.
+ Se o jogador clicar no botão correto, correspondente a sequência gerada, o botão desaparece, a cor de fundo será a mesma cor do botão e a barra de progresso aumenta
+ 
+ Se o jogador clicar no botão errado todos os botões reaparecem, a cor de fundo volta a ser branca e a barra de progresso é reiniciada.
  
  Se o todos os botóes forem pressionados na ordem correta, o jogo termina e é exibida uma mensagem parabenizando o jogador por ter vencido.
  
