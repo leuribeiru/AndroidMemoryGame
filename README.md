@@ -10,6 +10,6 @@
  
  Se o todos os botóes forem pressionados na ordem correta, o jogo termina e é exibida uma mensagem parabenizando o jogador por ter vencido.
  
- Se o botão "Reiniciar" for pressionado, uma nova sequência numérica aleatória será gerada, todos os botões reaparecerão e a barra de progresso sera reiniciada.
+ Se o botão "Reiniciar" for pressionado, uma nova sequência numérica aleatória será gerada, todos os botões reaparecerão, a cor de fundo será branca e a barra de progresso sera reiniciada.
  
 [Vídeo de demonstração](https://drive.google.com/file/d/15Rmg_-0EhhSK2qYwNmk7-3Wb7B-aZUf9/view?usp=sharing)
