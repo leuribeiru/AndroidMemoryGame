@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:text="@string/btn_restart"
+        android:onClick="btnRestart"
+        app:backgroundTint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_restart">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_1"
+                app:backgroundTint="@color/red" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_2"
+                app:backgroundTint="@color/green" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button3"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_3"
+                app:backgroundTint="@color/blue" />
+
+            <Button
+                android:id="@+id/button4"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_4"
+                app:backgroundTint="@color/yellow" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button5"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_5"
+                app:backgroundTint="@color/magenta" />
+
+            <Button
+                android:id="@+id/button6"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="@string/label_6"
+                app:backgroundTint="@color/cyan" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/congratulation_screen"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_restart">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/congratulation_title"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/congratulation_text"
+            android:textSize="24sp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/label_progress" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:orientation="vertical"
+            android:progress="50"
+            android:progressTint="@color/black" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

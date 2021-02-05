@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="buttons" >
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:width">100dp</item>
+        <item name="android:height">100dp</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
