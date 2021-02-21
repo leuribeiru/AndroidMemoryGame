@@ -13,3 +13,17 @@
  Se o botão "Reiniciar" for pressionado, uma nova sequência numérica aleatória será gerada, todos os botões reaparecerão, a cor de fundo será branca e a barra de progresso sera reiniciada.
  
 [Vídeo de demonstração](https://drive.google.com/file/d/15Rmg_-0EhhSK2qYwNmk7-3Wb7B-aZUf9/view?usp=sharing)
+
+# Atualização
+
+ O app agora tem um banco de dados SQLite, para persistir algumas informações.
+
+ Ao vencer, o jogador pode salvar seu nome, as informações serão salvas com o tempo que gastou e quantos erros cometeu.
+ 
+ O botão "Reiniciar" foi movido para baixo, perto da barra de progresso, e no lugar dele foi adicionado um botão para acessar o "Placar".
+ 
+ Na tela do "Placar" o usuário pode escolher se quer ver o placar por tempo gasto ou o placar de erros cometidos;
+ 
+ Na tela do "Placar" tem um botão "Apagar Placares", se o usuário clicar um alerta irá aparecer, caso confirme os placares serão apagados.
+ 
+[Vídeo de demonstração](https://drive.google.com/file/d/1_e2bkhFbe1pCU_4WKcVTuiLBHeGAvtYE/view?usp=sharing)
