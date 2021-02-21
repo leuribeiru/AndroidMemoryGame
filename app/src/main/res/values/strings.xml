@@ -10,4 +10,18 @@
     <string name="label_progress">Progresso:</string>
     <string name="congratulation_title">Parabéns!</string>
     <string name="congratulation_text">Você tem uma boa memória!</string>
+    <string name="current_score_title">Deseja salvar seu placar?</string>
+    <string name="string_seconds">segundo(s)</string>
+    <string name="string_mistakes">erro(s)</string>
+    <string name="label_name">Nome</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_go_to_score">Ver Placar</string>
+    <string name="msg_score_saved">"Sua pontuação foi salva!</string>
+    <string name="label_score_name">Nome</string>
+    <string name="label_score_value">Pontuação</string>
+    <string name="btn_clear_db_score">Limpar Placar</string>
+    <string name="btn_score_time">Tempo</string>
+    <string name="btn_score_erros">Erros</string>
+    <string name="title_score_by_time">Pontuação por tempo</string>
+    <string name="title_score_by_erros">Pontuação por erros</string>
 </resources>

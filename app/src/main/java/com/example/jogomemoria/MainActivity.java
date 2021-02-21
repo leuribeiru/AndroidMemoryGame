@@ -3,18 +3,29 @@ package com.example.jogomemoria;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import com.example.jogomemoria.database.ScoreDatabase;
+import com.example.jogomemoria.modelo.Score;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private final Integer numPossibilities = 6;
     private List<String>  possibilities;
@@ -23,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout mainBody;
     private ProgressBar progressBar;
     private LinearLayout congratulationScreen;
+    private TextView timeResult;
+    private TextView errosResult;
     private Integer hits;
+    private Integer mistakes;
+    private Calendar startTime;
+    private EditText inputName;
+    private Button btnSaveScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +61,33 @@ public class MainActivity extends AppCompatActivity {
         this.buttonList.add( (Button) findViewById(R.id.button5));
         this.buttonList.add( (Button) findViewById(R.id.button6));
 
+        this.timeResult = (TextView) findViewById(R.id.time_result);
+        this.errosResult = (TextView) findViewById(R.id.erros_result);
+        this.inputName = (EditText) findViewById(R.id.input_name);
+        this.btnSaveScore = (Button) findViewById(R.id.button_save_score);
+
+        class ValidaNomeEControlaOBotaoSave implements TextWatcher{
+            Button btn;
+            ValidaNomeEControlaOBotaoSave(Button button){
+                this.btn = button;
+            }
+            public void afterTextChanged(Editable s) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("Conferir-> count depois", String.valueOf(count));
+                if(count < 1){
+                    this.btn.setEnabled(false);
+                }else{
+                    this.btn.setEnabled(true);
+                }
+            }
+        }
+        this.inputName.addTextChangedListener(new ValidaNomeEControlaOBotaoSave(this.btnSaveScore));
+
         this.start();
 
     }
+
 
     private void resetSession(){
         this.mainBody.setBackgroundColor(getResources().getColor(R.color.white));
@@ -76,17 +117,22 @@ public class MainActivity extends AppCompatActivity {
     private void start(){
 
         this.congratulationScreen.setVisibility(View.INVISIBLE);
-
         this.mainBody.setBackgroundColor(getResources().getColor(R.color.white));
 
         this.setAllButtonsVisible();
-
         this.createRandomNumberList();
-
         this.progressBar.setProgress(0);
 
         this.hits = 0;
 
+        this.startTime = Calendar.getInstance();
+        this.mistakes = 0;
+
+        if(this.btnSaveScore.getText().length() < 1){
+            this.btnSaveScore.setEnabled(false);
+        }else{
+            this.btnSaveScore.setEnabled(true);
+        }
     }
 
     private void setAllButtonsVisible(){
@@ -100,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(hits*100/numPossibilities);
     }
 
-    public void btnRestart(View view){
+    public void onRestartClick(View view){
         this.start();
     }
 
@@ -114,11 +160,51 @@ public class MainActivity extends AppCompatActivity {
             this.hits++;
             this.progressBar.setProgress(this.calcProgress(this.hits));
             if(this.hits == this.numPossibilities){
-                this.congratulationScreen.setVisibility(View.VISIBLE);
+                this.win();
             }
         }else{
+            this.mistakes++;
             this.resetSession();
         }
+    }
+
+    private void win(){
+        Calendar finishTime = Calendar.getInstance();
+        Long timeRes = finishTime.getTimeInMillis() - startTime.getTimeInMillis();
+
+        this.timeResult.setText(timeRes.toString());
+        this.errosResult.setText(this.mistakes.toString());
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.inputName.getWindowToken(), 0);
+
+        this.congratulationScreen.setVisibility(View.VISIBLE);
+    }
+
+    public void goToScore(View view){
+        Intent intent = new Intent(this, ScoresActivity.class);
+        startActivity(intent);
+    }
+
+    public void onBtnSaveClick(View view){
+
+        ScoreDatabase bd = new ScoreDatabase(this);
+
+        Score score = new Score();
+        score.setName(this.inputName.getText().toString());
+        score.setTime(Double.valueOf(this.timeResult.getText().toString()));
+        score.setErros(Long.valueOf(this.errosResult.getText().toString()));
+
+        bd.insert(score);
+        bd.close();
+
+        Toast.makeText(this, R.string.msg_score_saved, Toast.LENGTH_LONG).show();
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.inputName.getWindowToken(), 0);
+
+        this.start();
+
     }
 
 }
